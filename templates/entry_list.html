@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entries for {{ trip.title }}</title>
+    <!-- Add Bootstrap CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-4">
+        <h1 class="text-center mb-4">Entries for {{ trip.title }}</h1>
+
+        <!-- Add New Entry Button -->
+        <div class="mb-3 text-center">
+            <a href="{% url 'entry_create' trip.pk %}" class="btn btn-primary">Add New Entry</a>
+        </div>
+
+        <!-- Entries List -->
+        <ul class="list-group">
+            {% for entry in entries %}
+                <li class="list-group-item">
+                    <a href="{% url 'entry_detail' trip.pk entry.pk %}" class="text-decoration-none">
+                        <strong>{{ entry.title }}</strong> - {{ entry.date }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Back to All Trips Link -->
+        <div class="text-center mt-3">
+            <a href="{% url 'trip_list' %}" class="btn btn-secondary">Back to All Trips</a>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and dependencies for optional functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

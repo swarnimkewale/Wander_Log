@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if trip %}Edit{% else %}Add{% endif %} Trip</title>
+    <!-- Add Bootstrap CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-4">
+        <h1 class="text-center mb-4">{% if trip %}Edit{% else %}Add{% endif %} Trip</h1>
+        
+        <!-- Form for adding/editing trip -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" name="title" value="{{ trip.title|default:'' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" class="form-control" name="location" value="{{ trip.location|default:'' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="date" class="form-control" name="start_date" value="{{ trip.start_date|default:'' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="end_date">End Date:</label>
+                <input type="date" class="form-control" name="end_date" value="{{ trip.end_date|default:'' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="theme">Theme:</label>
+                <input type="text" class="form-control" name="theme" value="{{ trip.theme|default:'' }}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea class="form-control" name="description" required>{{ trip.description|default:'' }}</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="photo">Photo:</label>
+                <input type="file" class="form-control-file" name="photo">
+            </div>
+            
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+
+        <!-- Cancel link -->
+        <div class="text-center">
+            <a href="{% url 'trip_list' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and dependencies for optional functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

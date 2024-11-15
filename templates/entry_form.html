@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if entry %}Edit{% else %}Add{% endif %} Entry</title>
+    <!-- Add Bootstrap CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-4">
+        <h1 class="text-center mb-4">{% if entry %}Edit{% else %}Add{% endif %} Entry</h1>
+        
+        <!-- Entry Form -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Title Input -->
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" name="title" class="form-control" value="{{ entry.title|default:'' }}" required>
+            </div>
+
+            <!-- Date Input -->
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" name="date" class="form-control" value="{{ entry.date|default:'' }}" required>
+            </div>
+
+            <!-- Description Textarea -->
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea name="description" class="form-control" rows="4" required>{{ entry.description|default:'' }}</textarea>
+            </div>
+
+            <!-- Photo Input -->
+            <div class="form-group">
+                <label for="photo">Photo:</label>
+                <input type="file" name="photo" class="form-control-file">
+            </div>
+
+            <!-- Save Button -->
+            <div class="text-center">
+                <button type="submit" class="btn btn-success btn-lg">Save</button>
+            </div>
+        </form>
+
+        <!-- Back to Entries Link -->
+        <div class="text-center mt-3">
+            <a href="{% url 'entry_list' trip.pk %}" class="btn btn-secondary btn-lg">Back to Entries</a>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and dependencies for optional functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

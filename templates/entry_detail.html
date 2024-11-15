@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ entry.title }}</title>
+    <!-- Add Bootstrap CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-4">
+        <!-- Entry Title -->
+        <h1 class="text-center mb-4">{{ entry.title }}</h1>
+
+        <!-- Entry Date -->
+        <p><strong>Date:</strong> {{ entry.date }}</p>
+
+        <!-- Entry Description -->
+        <p>{{ entry.description }}</p>
+
+        <!-- Entry Photo (if available) -->
+        {% if entry.photo %}
+            <div class="text-center">
+                <img src="{{ entry.photo.url }}" alt="{{ entry.title }}" class="img-fluid" style="max-width: 100%; max-height: 300px;">
+            </div>
+        {% endif %}
+
+        <!-- Edit and Delete Links -->
+        <div class="text-center mt-4">
+            <a href="{% url 'entry_update' entry.trip.pk entry.pk %}" class="btn btn-warning btn-lg">Edit</a> |
+            <a href="{% url 'entry_delete' entry.trip.pk entry.pk %}" class="btn btn-danger btn-lg">Delete</a>
+        </div>
+
+        <!-- Back to Entries Button -->
+        <div class="text-center mt-3">
+            <a href="{% url 'entry_list' entry.trip.pk %}" class="btn btn-secondary btn-lg">Back to Entries</a>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and dependencies for optional functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

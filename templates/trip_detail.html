@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ trip.title }}</title>
+    <!-- Add Bootstrap CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-4">
+        <h1 class="text-center mb-4">{{ trip.title }}</h1>
+
+        <!-- Trip Details -->
+        <div class="mb-3">
+            <p><strong>Location:</strong> {{ trip.location }}</p>
+            <p><strong>Theme:</strong> {{ trip.theme }}</p>
+            <p><strong>Description:</strong> {{ trip.description }}</p>
+        </div>
+
+        <!-- Trip Photo -->
+        {% if trip.photo %}
+            <div class="mb-3 text-center">
+                <img src="{{ trip.photo.url }}" alt="{{ trip.title }}" class="img-fluid" style="max-width: 100%; max-height: 400px;">
+            </div>
+        {% endif %}
+
+        <!-- View Entries Button -->
+        <div class="mb-3 text-center">
+            <a href="{% url 'entry_list' trip.pk %}" class="btn btn-info">View Entries</a>
+        </div>
+
+        <!-- Edit and Delete Options -->
+        <div class="text-center mb-3">
+            <a href="{% url 'trip_update' trip.pk %}" class="btn btn-warning btn-sm">Edit</a>
+            <a href="{% url 'trip_delete' trip.pk %}" class="btn btn-danger btn-sm">Delete</a>
+        </div>
+
+        <!-- Back to All Trips -->
+        <div class="text-center">
+            <a href="{% url 'trip_list' %}" class="btn btn-secondary">Back to All Trips</a>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and dependencies for optional functionality -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
