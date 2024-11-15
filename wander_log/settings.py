@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-qz&aww2&xxl7ec8u@n2sg#tl4ql7)50^qgk_pcr1r*kvo+mfh@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://wander-log.onrender.com']
+ALLOWED_HOSTS = ['wander-log.onrender.com']
 
 
 # Application definition
